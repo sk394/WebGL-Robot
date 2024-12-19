@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robot-Suman</title>
+    <script id="vertex-shader" type="x-shader/x-vertex">
+        attribute vec4 vPosition;
+        attribute vec2 vTexCoord;
+        uniform mat4 modelViewMatrix;
+        uniform mat4 projectionMatrix;
+        varying vec2 fTexCoord;
+        
+        void main() {
+            gl_Position = projectionMatrix * modelViewMatrix * vPosition;
+            fTexCoord = vTexCoord;
+        }
+    </script>
+    <script id="fragment-shader" type="x-shader/x-fragment">
+        precision mediump float;
+        varying vec2 fTexCoord;
+        uniform sampler2D texture;
+        
+        void main() {
+            gl_FragColor = texture2D(texture, fTexCoord);
+        }
+        </script>
+    <script type="text/javascript" src="Common/initShaders.js"></script> 
+    <script type="text/javascript" src="Common/MV.js"></script>
+    <script type="text/javascript" src="Common/webgl-utils.js"></script>
+    <style>
+        body{
+            background-color: #333;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        canvas{
+            border: 1px solid black;
+            margin: 0 auto;
+            margin-top:10px;   
+        }
+        .header{
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+        }
+        #controls {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+        #spin{
+            display: flex;
+            flex-direction: row;
+            padding: auto;
+            margin-left: 2px;
+        }
+        
+        button {
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <i>Suman Khadka - Computer Graphics PA2</i>
+        <i>Scroll down to check control menu (⬇) </i>
+    </div>
+    <canvas id="gl-canvas" width="512" height="512">
+        Oops...your browser doesn't support the canvas.
+    </canvas>
+    <div id="controls">
+        <button id="jumpButton">Jump</button>
+        <div id="spin">
+            <button id="spinButton">Spin</button>
+            <input type="range" id="spinSpeed" min="0" max="360" range="10" value="50">
+        </div>
+
+        <button id="stopButton">Stop Spinning</button>
+        <button id="isometricButton">Toggle Isometric View</button>
+        <button id="colorButton">Change Skin</button>
+    </div>
+    <div>
+        <h2><strong>Controls</strong></h2>
+        
+            <p><strong>Arrow keys</strong> : Rotate robot</p>
+            <p><strong>c</strong> : Change color pattern</p>
+            <p><strong>i</strong> : Toggle isometric view</p>
+            <p><strong>j</strong> : Jump the robot</p> 
+            <p><strong>s</strong> : Start spinning</p>  
+    </div>
+    <script type="text/javascript" src="advanced-robot.js"></script>
+</body>
+</html>
