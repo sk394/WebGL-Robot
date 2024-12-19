@@ -1,2 +1,16 @@
-# WebGL-Robot
-A 3D robot rendered using WebGL with parts (head, body, arms, and legs) 
+# 3D Robot Using WebGL
+
+This project demonstrates a 3D robot rendered entirely in WebGL. The robot consists of simple geometric shapes (cubes) for its head, body, arms, and legs. Users can toggle between a default front view and an isometric view using keyboard input.
+
+## Features
+- **3D Rendering**: The robot is built using WebGL primitives and transformed using matrix operations.
+- **Camera Views**:
+  - Default front view.
+  - Isometric view (toggle with `i` key).
+- **Interactive Key Commands**:
+  - `i`: Switch between front and isometric views.
+
+## Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/sk394/webgl-robot.git
